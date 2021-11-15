@@ -12,7 +12,7 @@ steps:
 ---
 kind: pipeline
 type: exec
-name: default
+name: build
 platform:
   os: linux
   arch: amd64
