@@ -1,0 +1,17 @@
+kind: pipeline
+type: docker
+name: default
+# copy below lines in your .drone.yml file 
+environment:
+  productId: 1166
+  subProductId: 2883
+  environment: Production
+  token: d8aebd9b-37db-4b93-a000-bbd80b12aff8
+  buildTool: DRONE
+  buildNumber: "${DRONE_BUILD_NUMBER}"
+steps:
+- name: ArmorCode Validation
+  image: byrnedo/alpine-curl
+  commands:
+  - wget https://app.armorcode.com/static/scripts/slastatus.sh
+  - sh slastatus.sh
